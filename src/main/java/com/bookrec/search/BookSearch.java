@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BookSearch {
     private List<Book> books;
-    
+
     public BookSearch() {
         books = new ArrayList<>();
         books.add(new FictionBook("Book1", "Author1", "Fiction", "Mystery"));
@@ -14,7 +14,11 @@ public class BookSearch {
         books.add(new NonFictionBook("Book3", "Author3", "Non-Fiction", "History"));
         books.add(new NonFictionBook("Book4", "Author4", "Non-Fiction", "Science"));
     }
-    
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
+
     public List<Book> searchByTitle(String title) {
         List<Book> matchingBooks = new ArrayList<>();
         for (Book book : books) {
@@ -24,7 +28,7 @@ public class BookSearch {
         }
         return matchingBooks;
     }
-    
+
     public List<Book> searchByAuthor(String author) {
         List<Book> matchingBooks = new ArrayList<>();
         for (Book book : books) {
@@ -34,7 +38,7 @@ public class BookSearch {
         }
         return matchingBooks;
     }
-    
+
     public List<Book> searchByGenre(String genre) {
         List<Book> matchingBooks = new ArrayList<>();
         for (Book book : books) {
