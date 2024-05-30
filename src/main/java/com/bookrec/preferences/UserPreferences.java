@@ -1,21 +1,21 @@
 package main.java.com.bookrec.preferences;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Arrays;
-import java.util.List;
 
 public class UserPreferences implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private List<String> favoriteGenres;
-    private List<String> preferredAuthors;
-    private List<String> previouslyReadBooks;
+    private Set<String> favoriteGenres;
+    private Set<String> preferredAuthors;
+    private Set<String> previouslyReadBooks;
 
     public UserPreferences() {
-        favoriteGenres = new ArrayList<>();
-        preferredAuthors = new ArrayList<>();
-        previouslyReadBooks = new ArrayList<>();
+        favoriteGenres = new HashSet<>();
+        preferredAuthors = new HashSet<>();
+        previouslyReadBooks = new HashSet<>();
     }
 
     public void addFavoriteGenre(String genre) {
@@ -30,15 +30,15 @@ public class UserPreferences implements Serializable {
         previouslyReadBooks.add(book);
     }
 
-    public List<String> getFavoriteGenres() {
+    public Set<String> getFavoriteGenres() {
         return favoriteGenres;
     }
 
-    public List<String> getPreferredAuthors() {
+    public Set<String> getPreferredAuthors() {
         return preferredAuthors;
     }
 
-    public List<String> getPreviouslyReadBooks() {
+    public Set<String> getPreviouslyReadBooks() {
         return previouslyReadBooks;
     }
 
@@ -55,22 +55,22 @@ public class UserPreferences implements Serializable {
         try (BufferedReader br = new BufferedReader(new FileReader("C:/Users/koily/projects/METCS622/metcs622/" + directory + "/" + filename))) {
             UserPreferences preferences = new UserPreferences();
             String line;
-
+    
             // Read favorite genres
             if ((line = br.readLine()) != null) {
-                preferences.favoriteGenres = Arrays.asList(line.split(","));
+                preferences.favoriteGenres = new HashSet<>(Arrays.asList(line.split(",")));
             }
-
+    
             // Read preferred authors
             if ((line = br.readLine()) != null) {
-                preferences.preferredAuthors = Arrays.asList(line.split(","));
+                preferences.preferredAuthors = new HashSet<>(Arrays.asList(line.split(",")));
             }
-
+    
             // Read previously read books
             if ((line = br.readLine()) != null) {
-                preferences.previouslyReadBooks = Arrays.asList(line.split(","));
+                preferences.previouslyReadBooks = new HashSet<>(Arrays.asList(line.split(",")));
             }
-
+    
             return preferences;
         } catch (FileNotFoundException e) {
             System.err.println("Error loading user preferences: File not found");

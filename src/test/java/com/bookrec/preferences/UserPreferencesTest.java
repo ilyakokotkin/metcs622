@@ -4,33 +4,33 @@ import main.java.com.bookrec.preferences.UserPreferences;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import java.util.List;
+import java.util.Set;
 
 public class UserPreferencesTest {
     @Test
     public void testAddFavoriteGenre() {
         UserPreferences prefs = new UserPreferences();
         prefs.addFavoriteGenre("Fiction");
-        List<String> favoriteGenres = prefs.getFavoriteGenres();
+        Set<String> favoriteGenres = prefs.getFavoriteGenres();
+        assertTrue(favoriteGenres.contains("Fiction"));
         assertEquals(1, favoriteGenres.size());
-        assertEquals("Fiction", favoriteGenres.get(0));
     }
-    
+
     @Test
     public void testAddPreferredAuthor() {
         UserPreferences prefs = new UserPreferences();
         prefs.addPreferredAuthor("Author1");
-        List<String> preferredAuthors = prefs.getPreferredAuthors();
+        Set<String> preferredAuthors = prefs.getPreferredAuthors();
+        assertTrue(preferredAuthors.contains("Author1"));
         assertEquals(1, preferredAuthors.size());
-        assertEquals("Author1", preferredAuthors.get(0));
     }
-    
+
     @Test
     public void testAddPreviouslyReadBook() {
         UserPreferences prefs = new UserPreferences();
         prefs.addPreviouslyReadBook("Book1");
-        List<String> previouslyReadBooks = prefs.getPreviouslyReadBooks();
+        Set<String> previouslyReadBooks = prefs.getPreviouslyReadBooks();
+        assertTrue(previouslyReadBooks.contains("Book1"));
         assertEquals(1, previouslyReadBooks.size());
-        assertEquals("Book1", previouslyReadBooks.get(0));
     }
 }
