@@ -2,6 +2,8 @@ package main.java.com.bookrec.facade;
 
 import main.java.com.bookrec.search.BookSearch;
 import main.java.com.bookrec.model.Book;
+import main.java.com.bookrec.preferences.UserPreferences;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,4 +35,9 @@ public class FacadeSearch {
                     .filter(book -> book.getAverageRating() >= minRating)
                     .collect(Collectors.toList());
     }
+
+    public List<Book> recommendBooks(UserPreferences preferences) {
+        return bookSearch.recommendBooks(preferences);
+    }
+
 }
